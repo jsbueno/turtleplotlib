@@ -1,0 +1,35 @@
+commit 8975835965da388077c775e62d477fb1c10f8ea6
+Author: Hans Ekkehard Plesser <hans.ekkehard.plesser@nmbu.no>
+Date:   Fri Oct 3 08:45:16 2025 +0200
+
+    Fix PEP8 issue
+
+commit 4449b14aeb8b0f98138c5e35d940ff01ad7c30b3
+Author: Hans Ekkehard Plesser <hans.ekkehard.plesser@nmbu.no>
+Date:   Fri Oct 3 08:44:43 2025 +0200
+
+    Support more turtle methods and properly handle non-square figure windows.
+
+commit 6d544975518e0a84c6912139adef10330f7c793c
+Author: Joao S O Bueno <gwidion@gmail.com>
+Date:   Mon May 25 11:08:47 2020 -0300
+
+    Fix dependency parameter
+
+commit 497393a0b8e578b27d7066b4150cece3f4693ab3
+Author: Joao S O Bueno <gwidion@gmail.com>
+Date:   Sun May 24 20:11:08 2020 -0300
+
+    Initial setup file
+
+commit 8b296feb74bb798afa3c4209f4db1ed36c574065
+Author: Joao S O Bueno <gwidion@gmail.com>
+Date:   Sun May 24 20:00:13 2020 -0300
+
+    License and minimal README
+
+commit 76c81de56e4858f4ac17dbf4c868cc5ceafe4428
+Author: Joao S O Bueno <gwidion@gmail.com>
+Date:   Sun May 24 19:43:48 2020 -0300
+
+    initial import: working Turtle class

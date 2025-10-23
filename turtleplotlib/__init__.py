@@ -7,22 +7,39 @@ from matplotlib.lines import Line2D as Line
 class Turtle:
     """Class to emulate Python's turtle inside a matplotlib Figure
     """
-    def __init__(self, figure=None, figsize=(5, 5), steps=500):
+
+    def __init__(self, figure=None, figsize=(5, 5), steps=500,
+                 interactive=True):
+        """
+        - figure: use figure if given
+        - figsize: create figure of this size
+        - steps: Number of turtle steps across window from left to right
+        - interactive: If true, update figure after each command and run in Matlplotlib interactive mode
+        """
+
+        self.interactive = interactive
+        if self.interactive:
+            plt.ion()
+
         if figure is None:
             figure = plt.figure(figsize=figsize)
         self.figure = figure
-        self.steps = 500
+
+        self._x_steps = steps
+        self._y_steps = steps / self.figure.get_figwidth() * self.figure.get_figheight()
+
         self.reset()
 
     def _to_canvas(self, point):
         return (
-            ((point[0] + self.center_x) / self.steps),
-            ((point[1] + self.center_y) / self.steps),
+            ((point[0] + self.center_x) / self._x_steps),
+            ((point[1] + self.center_y) / self._y_steps),
         )
 
     def line(self, origin, dest):
         if not self.drawing:
             return
+
         origin = self._to_canvas(origin)
         dest = self._to_canvas(dest)
         line = Line(
@@ -33,14 +50,17 @@ class Turtle:
         )
 
         self.figure.lines.append(line)
-        self.figure.canvas.draw()
+
+        if self.interactive:
+            self.figure.canvas.draw()
+            plt.pause(1e-6)  # ensure update even if running as script
 
     def clear(self):
         self.figure.clear()
 
     def reset(self):
-        self.center_x = self.steps // 2
-        self.center_y = self.steps // 2
+        self.center_x = self._x_steps // 2
+        self.center_y = self._y_steps // 2
 
         self.x = 0
         self.y = 0
@@ -71,6 +91,30 @@ class Turtle:
     def right(self, amount):
         self.direction -= amount
         self.direction = self.direction % 360
+
+    def position(self):
+        return self.x, self.y
+
+    def heading(self):
+        return self.direction
+
+    def setheading(self, angle):
+        self.direction = angle
+
+    def teleport(self, pos):
+        self.x, self.y = pos
+
+    def goto(self, pos):
+        original_x = self.x
+        original_y = self.y
+        self.x, self.y = pos
+        self.line((original_x, original_y), (self.x, self.y))
+
+    def color(self, col):
+        self.attributes['color'] = col
+
+    def width(self, wd):
+        self.attributes['linewidth'] = wd
 
     def __repr__(self):
         return f"[Turtle (self.x, self.y), drawing: {self.drawing}]"

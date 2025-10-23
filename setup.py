@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="turtleplotlib",
-    version="0.1.0",
+    version="0.1.1",
     description="Graphic Turtle to be used within a Matplotlib Figure",
     url="http://github.com/jsbueno/turtleplotlib",
     author="João S. O. Bueno",
@@ -10,6 +10,5 @@ setup(
     license="LGPLv3",
     packages=["turtleplotlib"],
     zip_safe=True,
-
-    install_requires = ["matplotlib",]
+    install_requires=["matplotlib",]
 )
